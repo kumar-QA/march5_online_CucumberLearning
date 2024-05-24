@@ -83,4 +83,49 @@ public class Login {
 	public void it_should_display_error_message_enter_username_and_password() {
 	  
 	}
+	
+	@When("user click on logoutBtn")
+	public void user_click_on_logout_btn() {
+	  WebElement  logoutbtn=driver.findElement(By.xpath("//a[@href=\"https://practicetestautomation.com/practice-test-login/\"]"));
+	  logoutbtn.click();
+	}
+
+	@Then("it should navigate to LoginTestPage and verify pageHeader")
+	public void it_should_navigate_to_login_test_page_and_verify_page_header() {
+	    WebElement  pageHeader=driver.findElement(By.xpath("//h2"));
+	    String Expected="Test login";
+	    String Actual=pageHeader.getText();
+	    Assert.assertEquals(Expected,Actual);
+	}
+	
+	@Then("close the browser")
+	public void  close_the_browser() {
+		driver.close();
+	}
+	
+	@When("user enter")
+	public void user_enter() {
+	   System.out.println("hi");
+	}
+
+
+		@When("^user enter (.*) value$")
+		public void user_enter_username(String name) throws InterruptedException {
+			WebElement uname = driver.findElement(By.id("username"));
+			Thread.sleep(2000);
+			uname.sendKeys(name);
+		}
+	
+		@When("^user enter (.*) data$")
+		public void user_enter_password(String password) throws InterruptedException {
+			WebElement pwd = driver.findElement(By.id("password"));
+			Thread.sleep(2000);
+			pwd.sendKeys(password);
+		}
+	
+		@Then("result should be displayed")
+		public void result_should_be_displayed() {
+		    System.out.println("executed");
+		}
 }
+
